@@ -18,13 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="TPg-T8-hSO">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="g6S-l3-GDl">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="28E-Ss-TyA">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28E-Ss-TyA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="209"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="TVv-0L-KSy">
@@ -45,23 +42,27 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="54"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-DT-6Js">
+                                    <pickerView contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="qk5-DT-6Js">
                                         <rect key="frame" x="0.0" y="438" width="375" height="209"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="g6S-l3-GDl" id="Jeg-8d-pfI"/>
+                                            <outlet property="delegate" destination="g6S-l3-GDl" id="avh-nS-y4e"/>
+                                        </connections>
                                     </pickerView>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.57416451690000003" blue="0.48736742370000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TPg-T8-hSO" secondAttribute="bottom" id="0Zn-Dg-2CM"/>
-                            <constraint firstItem="TPg-T8-hSO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4VY-My-hv0"/>
+                            <constraint firstItem="g6S-l3-GDl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="E0m-87-Jqx"/>
                             <constraint firstItem="g6S-l3-GDl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="G1s-3X-deB"/>
+                            <constraint firstItem="g6S-l3-GDl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IU2-iG-pjj"/>
                             <constraint firstAttribute="trailing" secondItem="g6S-l3-GDl" secondAttribute="trailing" id="Kt7-WY-RU4"/>
-                            <constraint firstItem="TPg-T8-hSO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LBx-j0-doS"/>
+                            <constraint firstItem="g6S-l3-GDl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Pk4-Vk-aCg"/>
                             <constraint firstItem="g6S-l3-GDl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TRA-ji-MHO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="g6S-l3-GDl" secondAttribute="bottom" id="YKk-Fh-sZs"/>
                             <constraint firstItem="g6S-l3-GDl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="e5f-fQ-Pm2"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TPg-T8-hSO" secondAttribute="trailing" id="nlo-Yd-Mj3"/>
+                            <constraint firstItem="g6S-l3-GDl" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="nNP-yt-yyZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -76,7 +77,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="596" height="842"/>
         <image name="bitcoin" width="335" height="335"/>
     </resources>
 </document>
