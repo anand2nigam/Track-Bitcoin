@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -14,6 +16,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         var finalURL = ""
     
         let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
+    let currencySelectedArray = ["$", "R$", "$", "¥", "€", "£", "$", "Rp", "₪", "₹", "¥", "$", "kr", "$", "zł", "lei", "₽", "kr", "$", "$", "R"]
+    var currencySymbol = ""
     
     // Connections with the UI
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
@@ -50,8 +54,36 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         print(currencyArray[row])
         finalURL = baseURL + currencyArray[row]
         print(finalURL)
+        currencySymbol = currencySelectedArray[row]
+        getBitcoinData(url: finalURL)
     }
     
+    // MARK:- Networking
+    
+    func getBitcoinData(url: String) {
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            if response.result.isSuccess {
+           let bitcoinJSONData: JSON = JSON(response.result.value!)
+            print(bitcoinJSONData)
+                self.updateBitcoinData(json: bitcoinJSONData)
+        }
+            else {
+                print(response.result.error!)
+                self.bitcoinPriceLabel.text = "Connection Issues"
+            }
+        }
+       
+    }
+    
+    // MARK:- JSON Parsing
+    
+    func updateBitcoinData(json: JSON) {
+        if  let bitcoinResult = json["ask"].double {
+        print(bitcoinResult)
+        bitcoinPriceLabel.text = "\(currencySymbol)\(bitcoinResult)"
+        }
+    }
 
 
 
